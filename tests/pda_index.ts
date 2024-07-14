@@ -155,8 +155,42 @@ describe("pda_index", () => {
     console.log("Valeur du probe du PDA :", pdaAccount.probe);
 
   //----
+  const dataTouch = 1;
+  const indexBufferTouch = Buffer.allocUnsafe(2);
+  indexBufferTouch.writeUInt16LE(dataTouch, 0);
 
-    const all = await program.account.data.all();
+
+  const [pdaPubkeyTouch, bumpTouch] = await anchor.web3.PublicKey.findProgramAddress(
+    [
+      Buffer.from("PDA"),
+      signer.publicKey.toBuffer(),
+      indexBufferTouch,
+    ],
+    program.programId
+  );
+
+  pda = {
+    pubkey: pdaPubkeyTouch,
+    bump  : bumpTouch,
+  };
+
+  txPda = await program.methods.touchPda()
+    .accounts({
+      pda          : pda.pubkey,
+      signer       : signer.publicKey,
+      systemProgram: anchor.web3.SystemProgram.programId,
+    })
+    .signers([signer])
+    .rpc();
+
+  //console.log("Your transaction signature :", txPda);
+  console.log("");
+  console.log("https://solana.fm/tx/"+txPda);
+  console.log("");
+
+  //----
+
+  const all = await program.account.data.all();
     console.log(all);
 
   });

@@ -29,6 +29,14 @@ pub mod pda_index {
 		Ok(())
 	}
 
+	pub fn touch_pda(ctx: Context<TouchPda>) -> Result<()> {
+		let pda: &mut Account<Pda>   = &mut ctx.accounts.pda;
+
+		msg!("index : {}",pda.index);
+		msg!("probe : {}",pda.probe);
+		Ok(())
+	}
+
 }
 
 
@@ -82,4 +90,15 @@ pub struct CreatePda<'info> {
 	pub signer: Signer<'info>,
 
 	pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct TouchPda<'info> {
+
+	pub pda: Account<'info, Pda>,
+
+	#[account(mut)]
+	pub signer: Signer<'info>,
+
+	pub system_program: Program<'info, System>,	
 }
