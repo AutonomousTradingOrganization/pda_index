@@ -131,28 +131,28 @@ describe("pda_index", () => {
 
   //----
 
-  const indexFetch = 1; // exemple d'index pour la PDA
-  const indexBuffer = Buffer.allocUnsafe(2);
-  indexBuffer.writeUInt16LE(indexFetch, 0);
-  // console.log(indexFetch);
-  // console.log(indexBuffer);
-  const seeds = [
-    Buffer.from("PDA"),
-    signer.publicKey.toBuffer(),
-    indexBuffer,
-  ];
-  const [pdaPubkeyFetch, bumpFetch] = await anchor.web3.PublicKey.findProgramAddress(
-    seeds,
-    program.programId
-  );
+    const indexFetch = 1; // exemple d'index pour la PDA
+    const indexBuffer = Buffer.allocUnsafe(2);
+    indexBuffer.writeUInt16LE(indexFetch, 0);
+    // console.log(indexFetch);
+    // console.log(indexBuffer);
+    const seeds = [
+      Buffer.from("PDA"),
+      signer.publicKey.toBuffer(),
+      indexBuffer,
+    ];
+    const [pdaPubkeyFetch, bumpFetch] = await anchor.web3.PublicKey.findProgramAddress(
+      seeds,
+      program.programId
+    );
 
-  // console.log("===");
-  // console.log(pdaPubkeyFetch);
+    // console.log("===");
+    // console.log(pdaPubkeyFetch);
 
-  const pdaAccount = await program.account.pda.fetch(pdaPubkeyFetch);
-  console.log("PDA #", indexFetch);
-  console.log("Index du PDA :", pdaAccount.index);
-  console.log("Valeur du probe du PDA :", pdaAccount.probe);
+    const pdaAccount = await program.account.pda.fetch(pdaPubkeyFetch);
+    console.log("PDA #", indexFetch);
+    console.log("Index du PDA :", pdaAccount.index);
+    console.log("Valeur du probe du PDA :", pdaAccount.probe);
 
   //----
 
