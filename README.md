@@ -9,6 +9,8 @@ Just a quick sandbox to check how to manage indexec PDAs with Anchor and test sc
 - [Understanding Account Ownership in Solana: Transferring SOL out of a PDA](https://www.rareskills.io/post/solana-account-owner)
 - [PDA (Program Derived Address) vs Keypair Account in Solana](https://www.rareskills.io/post/solana-pda)
 - [SolDev - Anchor PDAs and Accounts](https://www.soldev.app/course/anchor-pdas)
+- [Election-Program/programs/election/src/lib.rs at main · 0xShuk/Election-Program · GitHub](https://github.com/0xShuk/Election-Program/blob/main/programs/election/src/lib.rs)
+- [Election-Program/tests/election.ts at main · 0xShuk/Election-Program · GitHub](https://github.com/0xShuk/Election-Program/blob/main/tests/election.ts)
 
 ## Launch
 
